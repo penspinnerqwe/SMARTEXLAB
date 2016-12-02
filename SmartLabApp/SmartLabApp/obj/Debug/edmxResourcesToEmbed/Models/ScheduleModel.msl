@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ScheduleModelStoreContainer" CdmEntityContainer="ScheduleModelContainer1">
+    <EntitySetMapping Name="StudentSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ScheduleModel.Student)">
+        <MappingFragment StoreEntitySet="StudentSet">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Group" ColumnName="Group" />
+          <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeacherSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ScheduleModel.Teacher)">
+        <MappingFragment StoreEntitySet="TeacherSet">
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Degree" ColumnName="Degree" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ScheduleModel.Course)">
+        <MappingFragment StoreEntitySet="CourseSet">
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="HoursNumber" ColumnName="HoursNumber" />
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentsCourseSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ScheduleModel.StudentsCourse)">
+        <MappingFragment StoreEntitySet="StudentsCourseSet">
+          <ScalarProperty Name="StudentsCourseId" ColumnName="StudentsCourseId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Appraisal" ColumnName="Appraisal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TeacherCourse" TypeName="ScheduleModel.TeacherCourse" StoreEntitySet="CourseSet">
+      <EndProperty Name="Teacher">
+        <ScalarProperty Name="TeacherId" ColumnName="Teacher_TeacherId" />
+      </EndProperty>
+      <EndProperty Name="Course">
+        <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CourseStudentsCourse" TypeName="ScheduleModel.CourseStudentsCourse" StoreEntitySet="StudentsCourseSet">
+      <EndProperty Name="Course">
+        <ScalarProperty Name="CourseId" ColumnName="Course_CourseId" />
+      </EndProperty>
+      <EndProperty Name="StudentsCourse">
+        <ScalarProperty Name="StudentsCourseId" ColumnName="StudentsCourseId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StudentStudentsCourse" TypeName="ScheduleModel.StudentStudentsCourse" StoreEntitySet="StudentsCourseSet">
+      <EndProperty Name="Student">
+        <ScalarProperty Name="StudentId" ColumnName="Student_StudentId" />
+      </EndProperty>
+      <EndProperty Name="StudentsCourse">
+        <ScalarProperty Name="StudentsCourseId" ColumnName="StudentsCourseId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

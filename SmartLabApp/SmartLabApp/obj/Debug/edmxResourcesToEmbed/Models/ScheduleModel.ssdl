@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ScheduleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CourseSet">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HoursNumber" Type="int" Nullable="false" />
+    <Property Name="TeacherId" Type="int" Nullable="false" />
+    <Property Name="Teacher_TeacherId" Type="int" />
+  </EntityType>
+  <EntityType Name="StudentsCourseSet">
+    <Key>
+      <PropertyRef Name="StudentsCourseId" />
+    </Key>
+    <Property Name="StudentsCourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="Appraisal" Type="int" Nullable="false" />
+    <Property Name="Course_CourseId" Type="int" />
+    <Property Name="Student_StudentId" Type="int" />
+  </EntityType>
+  <EntityType Name="StudentSet">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Group" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Faculty" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Course" Type="int" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TeacherSet">
+    <Key>
+      <PropertyRef Name="TeacherId" />
+    </Key>
+    <Property Name="TeacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Degree" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="CourseStudentsCourse">
+    <End Role="CourseSet" Type="Self.CourseSet" Multiplicity="0..1" />
+    <End Role="StudentsCourseSet" Type="Self.StudentsCourseSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseSet">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="StudentsCourseSet">
+        <PropertyRef Name="Course_CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StudentStudentsCourse">
+    <End Role="StudentSet" Type="Self.StudentSet" Multiplicity="0..1" />
+    <End Role="StudentsCourseSet" Type="Self.StudentsCourseSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentSet">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentsCourseSet">
+        <PropertyRef Name="Student_StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TeacherCourse">
+    <End Role="TeacherSet" Type="Self.TeacherSet" Multiplicity="0..1" />
+    <End Role="CourseSet" Type="Self.CourseSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeacherSet">
+        <PropertyRef Name="TeacherId" />
+      </Principal>
+      <Dependent Role="CourseSet">
+        <PropertyRef Name="Teacher_TeacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ScheduleModelStoreContainer">
+    <EntitySet Name="CourseSet" EntityType="Self.CourseSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentsCourseSet" EntityType="Self.StudentsCourseSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentSet" EntityType="Self.StudentSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeacherSet" EntityType="Self.TeacherSet" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="CourseStudentsCourse" Association="Self.CourseStudentsCourse">
+      <End Role="CourseSet" EntitySet="CourseSet" />
+      <End Role="StudentsCourseSet" EntitySet="StudentsCourseSet" />
+    </AssociationSet>
+    <AssociationSet Name="StudentStudentsCourse" Association="Self.StudentStudentsCourse">
+      <End Role="StudentSet" EntitySet="StudentSet" />
+      <End Role="StudentsCourseSet" EntitySet="StudentsCourseSet" />
+    </AssociationSet>
+    <AssociationSet Name="TeacherCourse" Association="Self.TeacherCourse">
+      <End Role="TeacherSet" EntitySet="TeacherSet" />
+      <End Role="CourseSet" EntitySet="CourseSet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
