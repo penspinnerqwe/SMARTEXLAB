@@ -53,20 +53,20 @@
         <ScalarProperty Name="CourseId" ColumnName="CourseId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="CourseStudentsCourse" TypeName="ScheduleModel.CourseStudentsCourse" StoreEntitySet="StudentsCourseSet">
-      <EndProperty Name="Course">
-        <ScalarProperty Name="CourseId" ColumnName="Course_CourseId" />
-      </EndProperty>
+    <AssociationSetMapping Name="StudentsCourseStudent" TypeName="ScheduleModel.StudentsCourseStudent" StoreEntitySet="StudentSet">
       <EndProperty Name="StudentsCourse">
-        <ScalarProperty Name="StudentsCourseId" ColumnName="StudentsCourseId" />
+        <ScalarProperty Name="StudentsCourseId" ColumnName="StudentsCourse_StudentsCourseId" />
+      </EndProperty>
+      <EndProperty Name="Student">
+        <ScalarProperty Name="StudentId" ColumnName="StudentId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="StudentStudentsCourse" TypeName="ScheduleModel.StudentStudentsCourse" StoreEntitySet="StudentsCourseSet">
-      <EndProperty Name="Student">
-        <ScalarProperty Name="StudentId" ColumnName="Student_StudentId" />
-      </EndProperty>
+    <AssociationSetMapping Name="StudentsCourseCourse" TypeName="ScheduleModel.StudentsCourseCourse" StoreEntitySet="CourseSet">
       <EndProperty Name="StudentsCourse">
-        <ScalarProperty Name="StudentsCourseId" ColumnName="StudentsCourseId" />
+        <ScalarProperty Name="StudentsCourseId" ColumnName="StudentsCourse_StudentsCourseId" />
+      </EndProperty>
+      <EndProperty Name="Course">
+        <ScalarProperty Name="CourseId" ColumnName="CourseId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

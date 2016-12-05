@@ -14,12 +14,18 @@ namespace SmartLabApp.Models
     
     public partial class StudentsCourse
     {
+        public StudentsCourse()
+        {
+            this.Student = new HashSet<Student>();
+            this.Course = new HashSet<Course>();
+        }
+    
         public int StudentsCourseId { get; set; }
         public int StudentId { get; set; }
         public int CourseId { get; set; }
         public int Appraisal { get; set; }
     
-        public virtual Course Course { get; set; }
-        public virtual Student Student { get; set; }
+        public virtual ICollection<Student> Student { get; set; }
+        public virtual ICollection<Course> Course { get; set; }
     }
 }

@@ -9,13 +9,13 @@
       <End Role="Teacher" EntitySet="TeacherSet" />
       <End Role="Course" EntitySet="CourseSet" />
     </AssociationSet>
-    <AssociationSet Name="CourseStudentsCourse" Association="ScheduleModel.CourseStudentsCourse">
-      <End Role="Course" EntitySet="CourseSet" />
+    <AssociationSet Name="StudentsCourseStudent" Association="ScheduleModel.StudentsCourseStudent">
       <End Role="StudentsCourse" EntitySet="StudentsCourseSet" />
-    </AssociationSet>
-    <AssociationSet Name="StudentStudentsCourse" Association="ScheduleModel.StudentStudentsCourse">
       <End Role="Student" EntitySet="StudentSet" />
+    </AssociationSet>
+    <AssociationSet Name="StudentsCourseCourse" Association="ScheduleModel.StudentsCourseCourse">
       <End Role="StudentsCourse" EntitySet="StudentsCourseSet" />
+      <End Role="Course" EntitySet="CourseSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Student">
@@ -29,7 +29,7 @@
     <Property Name="Faculty" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Course" Type="Int32" Nullable="false" />
     <Property Name="Age" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="StudentsCourse" Relationship="ScheduleModel.StudentStudentsCourse" FromRole="Student" ToRole="StudentsCourse" />
+    <NavigationProperty Name="StudentsCourse" Relationship="ScheduleModel.StudentsCourseStudent" FromRole="Student" ToRole="StudentsCourse" />
   </EntityType>
   <EntityType Name="Teacher">
     <Key>
@@ -51,7 +51,7 @@
     <Property Name="HoursNumber" Type="Int32" Nullable="false" />
     <Property Name="TeacherId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Teacher" Relationship="ScheduleModel.TeacherCourse" FromRole="Course" ToRole="Teacher" />
-    <NavigationProperty Name="StudentsCourse" Relationship="ScheduleModel.CourseStudentsCourse" FromRole="Course" ToRole="StudentsCourse" />
+    <NavigationProperty Name="StudentsCourse" Relationship="ScheduleModel.StudentsCourseCourse" FromRole="Course" ToRole="StudentsCourse" />
   </EntityType>
   <EntityType Name="StudentsCourse">
     <Key>
@@ -61,19 +61,19 @@
     <Property Name="StudentId" Type="Int32" Nullable="false" />
     <Property Name="CourseId" Type="Int32" Nullable="false" />
     <Property Name="Appraisal" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Course" Relationship="ScheduleModel.CourseStudentsCourse" FromRole="StudentsCourse" ToRole="Course" />
-    <NavigationProperty Name="Student" Relationship="ScheduleModel.StudentStudentsCourse" FromRole="StudentsCourse" ToRole="Student" />
+    <NavigationProperty Name="Student" Relationship="ScheduleModel.StudentsCourseStudent" FromRole="StudentsCourse" ToRole="Student" />
+    <NavigationProperty Name="Course" Relationship="ScheduleModel.StudentsCourseCourse" FromRole="StudentsCourse" ToRole="Course" />
   </EntityType>
   <Association Name="TeacherCourse">
     <End Type="ScheduleModel.Teacher" Role="Teacher" Multiplicity="1" />
     <End Type="ScheduleModel.Course" Role="Course" Multiplicity="*" />
   </Association>
-  <Association Name="CourseStudentsCourse">
-    <End Type="ScheduleModel.Course" Role="Course" Multiplicity="1" />
-    <End Type="ScheduleModel.StudentsCourse" Role="StudentsCourse" Multiplicity="*" />
+  <Association Name="StudentsCourseStudent">
+    <End Type="ScheduleModel.StudentsCourse" Role="StudentsCourse" Multiplicity="1" />
+    <End Type="ScheduleModel.Student" Role="Student" Multiplicity="*" />
   </Association>
-  <Association Name="StudentStudentsCourse">
-    <End Type="ScheduleModel.Student" Role="Student" Multiplicity="1" />
-    <End Type="ScheduleModel.StudentsCourse" Role="StudentsCourse" Multiplicity="*" />
+  <Association Name="StudentsCourseCourse">
+    <End Type="ScheduleModel.StudentsCourse" Role="StudentsCourse" Multiplicity="1" />
+    <End Type="ScheduleModel.Course" Role="Course" Multiplicity="*" />
   </Association>
 </Schema>

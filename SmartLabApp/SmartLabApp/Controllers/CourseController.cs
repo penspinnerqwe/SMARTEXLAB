@@ -8,7 +8,7 @@ using SmartLabApp.Models;
 using System.Data;
  
 
-namespace SmartApp.Controllers
+namespace SmartLabApp.Controllers
 {
     public class CourseController : ApiController
     {

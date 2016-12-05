@@ -14,11 +14,6 @@ namespace SmartLabApp.Models
     
     public partial class Student
     {
-        public Student()
-        {
-            this.StudentsCourse = new HashSet<StudentsCourse>();
-        }
-    
         public int StudentId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -27,6 +22,6 @@ namespace SmartLabApp.Models
         public int Course { get; set; }
         public int Age { get; set; }
     
-        public virtual ICollection<StudentsCourse> StudentsCourse { get; set; }
+        public virtual StudentsCourse StudentsCourse { get; set; }
     }
 }

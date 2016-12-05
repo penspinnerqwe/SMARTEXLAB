@@ -10,8 +10,8 @@
         <EntityTypeShape EntityType="ScheduleModel.Course" Width="1.5" PointX="2.875" PointY="0.75" />
         <EntityTypeShape EntityType="ScheduleModel.StudentsCourse" Width="1.5" PointX="4.875" PointY="3.625" />
         <AssociationConnector Association="ScheduleModel.TeacherCourse" />
-        <AssociationConnector Association="ScheduleModel.CourseStudentsCourse" />
-        <AssociationConnector Association="ScheduleModel.StudentStudentsCourse" />
+        <AssociationConnector Association="ScheduleModel.StudentsCourseStudent" />
+        <AssociationConnector Association="ScheduleModel.StudentsCourseCourse" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

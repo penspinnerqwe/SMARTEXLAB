@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\Dashka\Desktop\SmartLabApp\SmartLabApp\Models\ScheduleModel.edmx" включено. 
+﻿// Создание кода T4 для модели "E:\ЛАБЫ\SMARTEXLAB_С#\SmartLabApp\SmartLabApp\Models\ScheduleModel.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.
